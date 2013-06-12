@@ -1,6 +1,5 @@
 .DS_Store
 .vagrant
-public/
 public/*
 !db/
 db/*
