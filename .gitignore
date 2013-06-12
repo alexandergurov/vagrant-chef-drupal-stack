@@ -1,0 +1,8 @@
+.DS_Store
+.vagrant
+public/
+public/*
+!db/
+db/*
+!db/mysql/
+/.idea
