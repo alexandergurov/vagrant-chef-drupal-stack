@@ -26,11 +26,3 @@ You can add `XDEBUG_PROFILE` to your GET parameter to generate an xdebug profile
 You can then investigate at [http://dev-site.vbox.local/webgrind/](http://dev-site.vbox.local/webgrind/)
 
 Phpmyadmin is available [http://dev-site.vbox.local/phpmyadmin/](http://dev-site.vbox.local/phpmyadmin/). User `myadmin`, Password `myadmin`
-
-## Other projects of interest
-
-*  [http://drupal.org/sandbox/mbutcher/1356522](http://drupal.org/sandbox/mbutcher/1356522)
-*  [http://drupal.org/project/drush-vagrant](http://drupal.org/project/drush-vagrant)
-
-
-(Development sponsored by: [AllPlayers.com](https://www.allplayers.com))
