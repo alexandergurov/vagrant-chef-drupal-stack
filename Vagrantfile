@@ -26,23 +26,12 @@ Vagrant::Config.run do |config|
   # config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
   # config.vm.share_folder("v-apt", "/var/cache/apt", "~/temp/vagrant_aptcache/apt", :nfs => true)
 
-  # HERE IS A HACKY WAY TO REMOVE APPARMOR
-  # it's made to change mysql data dir to /vagrant/db dir
-  # TODO move to separate recept with platform condition
-  config.vm.provision :shell, :inline => "/etc/init.d/apparmor stop"
-  config.vm.provision :shell, :inline => "update-rc.d -f apparmor remove"
-  config.vm.provision :shell, :inline => "aptitude remove apparmor apparmor-utils"
-
   config.vm.provision :chef_solo do |chef|
     # This path will be expanded relative to the project directory
     chef.cookbooks_path = ["cookbooks/site-cookbooks", "cookbooks/drupal-cookbooks", "cookbooks/my-cookbooks"]
     chef.roles_path = "roles"
-
     # This role represents our default Drupal development stack.
-    chef.add_role("drupal_lamp_varnish_dev")
-    # Install an example D7 install at drupal.vbox.local.
-    # chef.add_recipe('apparmor')
-    chef.add_recipe('drupal::example')
+    chef.add_role("pure_drupal_dev")
     # This is basically the Vagrant role.
     chef.json.merge!({
         :www_root => '/vagrant/public',
