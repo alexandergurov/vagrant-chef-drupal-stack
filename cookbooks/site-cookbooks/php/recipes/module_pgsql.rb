@@ -1,6 +1,8 @@
 #
 # Author::  Joshua Timberman (<joshua@opscode.com>)
 # Author::  Seth Chisamore (<schisamo@opscode.com>)
+# Author::  Panagiotis Papadomitsos (<pj@ezgr.net>)
+#
 # Cookbook Name:: php
 # Recipe:: module_pgsql
 #
@@ -19,10 +21,10 @@
 # limitations under the License.
 #
 
-pkg = value_for_platform(
-    [ "centos", "redhat", "fedora" ] => {"default" => "php53-pgsql"}, 
-    "default" => "php5-pgsql"
-  )
+pkg = value_for_platform_family(
+    [ 'rhel', 'fedora' ] => 'php-pgsql',
+    'debian' => 'php5-pgsql'
+)
 
 package pkg do
   action :install

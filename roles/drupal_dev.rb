@@ -5,7 +5,7 @@ run_list(
   "recipe[drush::head]",
   "recipe[drush_make]",
   "recipe[phpmyadmin]", # TODO Cookbook needs testing!
-  "recipe[webgrind]", # TODO Does this actually work?
+  #"recipe[webgrind]", # TODO Does this actually work?
   "recipe[xhprof]"
 )
 # TODO Add recipe to create dev sites via Drush make.

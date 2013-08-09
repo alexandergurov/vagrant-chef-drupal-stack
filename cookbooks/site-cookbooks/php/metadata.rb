@@ -1,27 +1,19 @@
-maintainer        "Opscode, Inc."
-maintainer_email  "cookbooks@opscode.com"
-license           "Apache 2.0"
-description       "Installs and maintains php and php modules"
-version           "1.0.0"
+name              'php'
+maintainer        'Panagiotis Papadomitsos'
+maintainer_email  'pj@ezgr.net'
+license           'Apache Public License 2.0'
+description       'Installs/Configures PHP and various modules'
+long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md')).chomp
+version           IO.read(File.join(File.dirname(__FILE__), 'VERSION')).chomp rescue '0.1.0'
 
-depends "build-essential"
-depends "xml"
-depends "mysql"
+depends           'build-essential'
+depends           'xml'
+depends           'yumrepo'
 
-%w{ debian ubuntu centos redhat fedora }.each do |os|
-  supports os
-end
+suggests          'apache2'
+suggests          'nginx'
 
-recipe "php", "Installs php"
-recipe "php::package", "Installs php using packages."
-recipe "php::source", "Installs php from source."
-recipe "php::module_apc", "Install the php5-apc package"
-recipe "php::module_curl", "Install the php5-curl package"
-recipe "php::module_fileinfo", "Install the php5-fileinfo package"
-recipe "php::module_fpdf", "Install the php-fpdf package"
-recipe "php::module_gd", "Install the php5-gd package"
-recipe "php::module_ldap", "Install the php5-ldap package"
-recipe "php::module_memcache", "Install the php5-memcache package"
-recipe "php::module_mysql", "Install the php5-mysql package"
-recipe "php::module_pgsql", "Install the php5-pgsql packag"
-recipe "php::module_sqlite3", "Install the php5-sqlite3 package"
+supports          'ubuntu', '>= 12.04'
+supports          'debian', '>= 6.0'
+supports          'centos', '>= 6.0'
+supports          'redhat', '>= 9.0'

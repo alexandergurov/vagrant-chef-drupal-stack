@@ -1,7 +1,9 @@
 name "apache2_php_backend"
 description "Configure php5.3 and apache2 with mod_php."
 run_list(
+  "recipe[apt]",
   "recipe[php]",
+  "recipe[php::apache2]",
   "recipe[apache2]",
   "recipe[apache2::mod_expires]",
   "recipe[apache2::mod_php5]",

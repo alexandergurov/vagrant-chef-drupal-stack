@@ -29,6 +29,7 @@ action :discover do
     Chef::Log.info("Discovering pear channel #{@new_resource}")
     execute "pear channel-discover #{@new_resource.channel_name}" do
       action :run
+      only_if { true }
     end
     new_resource.updated_by_last_action(true)
   end
@@ -39,6 +40,7 @@ action :add do
     Chef::Log.info("Adding pear channel #{@new_resource} from #{@new_resource.channel_xml}")
     execute "pear channel-add #{@new_resource.channel_xml}" do
       action :run
+      only_if { true }
     end
     new_resource.updated_by_last_action(true)
   end
@@ -67,6 +69,7 @@ action :remove do
     Chef::Log.info("Deleting pear channel #{@new_resource}")
     execute "pear channel-delete #{@new_resource.channel_name}" do
       action :run
+      only_if { true }
     end
     new_resource.updated_by_last_action(true)
   end
@@ -84,6 +87,7 @@ def exists?
     shell_out!("pear channel-info #{@current_resource.channel_name}")
     true
   rescue Chef::Exceptions::ShellCommandFailed
+  rescue Mixlib::ShellOut::ShellCommandFailed
     false
   end
 end

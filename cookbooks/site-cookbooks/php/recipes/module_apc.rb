@@ -1,6 +1,8 @@
 #
 # Author::  Joshua Timberman (<joshua@opscode.com>)
 # Author::  Seth Chisamore (<schisamo@opscode.com>)
+# Author::  Panagiotis Papadomitsos (<pj@ezgr.net>)
+#
 # Cookbook Name:: php
 # Recipe:: module_apc
 #
@@ -19,19 +21,27 @@
 # limitations under the License.
 #
 
-case node['platform']
-when "centos", "redhat", "fedora"
+case node['platform_family']
+when 'rhel', 'fedora'
   %w{ httpd-devel pcre pcre-devel }.each do |pkg|
     package pkg do
       action :install
     end
   end
-  php_pear "apc" do
-    action :install
-    directives(:shm_size => "128M", :enable_cli => 0)
-  end
-when "debian", "ubuntu"
-  package "php-apc" do
+
+  package 'php-pecl-apc' do
     action :install
   end
+  
+when 'debian'
+  package 'php-apc' do
+    action :install
+  end
+end
+
+template "#{node['php']['ext_conf_dir']}/apc.ini" do
+  source 'apc.ini.erb'
+  owner 'root'
+  group 'root'
+  mode 00644
 end
