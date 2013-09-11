@@ -50,7 +50,7 @@ else
   default['php']['upload_dir']    = '/var/lib/php5/uploads'
 end
 
-default['php']['secure_functions']['disable_functions'] = 'dl,posix_kill,posix_mkfifo,posix_setuid,proc_close,proc_open,proc_terminate,shell_exec,system,leak,posix_setpgid,posix_setsid,proc_get_status,proc_nice,show_source,virtual,proc_terminate,inject_code,define_syslog_variables,syslog,posix_uname'
+default['php']['secure_functions']['disable_functions'] = 'dl,posix_kill,posix_mkfifo,posix_setuid,proc_close,leak,posix_setpgid,posix_setsid,proc_get_status,proc_nice,show_source,virtual,inject_code,define_syslog_variables,syslog,posix_uname'
 
 # PHP.ini Settings
 default['php']['ini_settings'] = {
@@ -64,13 +64,13 @@ default['php']['ini_settings'] = {
   'error_log' => '',
   'register_globals' => 'Off',
   'register_long_arrays' => 'Off',
-  'post_max_size' => '32M',
+  'post_max_size' => '1000M',
   'magic_quotes_gpc' => 'Off',
   'allow_url_fopen' => 'On',
   'allow_url_include' => 'Off',
   'always_populate_raw_post_data' => 'Off',
   'cgi.fix_pathinfo' => '1',
-  'upload_max_filesize' => '32M',
+  'upload_max_filesize' => '1000M',
   'date.timezone' => 'Europe/Athens',
   'session.cookie_httponly' => '0'
 }
